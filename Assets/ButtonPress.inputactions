@@ -1,0 +1,45 @@
+{
+    "name": "ButtonPress",
+    "maps": [
+        {
+            "name": "VrButton",
+            "id": "fe5589d7-af8e-4c5f-b05e-38b0628bf520",
+            "actions": [
+                {
+                    "name": "Button",
+                    "type": "Button",
+                    "id": "fbc49ea3-7aa6-4de8-b9a6-f724afe2fd04",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "e0a876c6-75d3-409c-9a56-dc7f014eed60",
+                    "path": "<OculusTouchController>{LeftHand}/primaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Button",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2aad7877-12bc-4fad-aee8-3bedf00b5a6f",
+                    "path": "<OculusTouchController>{RightHand}/primaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Button",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
