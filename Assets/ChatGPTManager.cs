@@ -40,7 +40,7 @@ public class ChatGPTManager : MonoBehaviour
     [System.Serializable]
     public class OnResponseEvent : UnityEvent<string> { }
 
-    private OpenAIApi openAI = new OpenAIApi();
+    private OpenAIApi openAI = new OpenAIApi("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", "org-9uhstzfEY5XTHI0xQxbtbomx");
     private List<ChatMessage> messages = new List<ChatMessage>();
 
     public string GetInstructions()
@@ -139,7 +139,6 @@ public class ChatGPTManager : MonoBehaviour
         if (canHear)
         {
             voiceToText.Activate();
-            Debug.Log("esh");
         }
     }
 

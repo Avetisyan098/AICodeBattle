@@ -6,8 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Chat GPT NPC.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    path: Assets/Scenes/Interrogation Room.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/Museum.unity
+    guid: 2700fc6d979a86a4ca249426031124e2
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 335a972a310373540a2aed5233e20eb5,
       type: 2}
