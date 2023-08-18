@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
@@ -11,6 +12,9 @@ public class CameraController : MonoBehaviour
 
     public Material RenderMaterial;
     public Material WhiteMaterial;
+
+    public Camera renderCamera; // The camera rendering into the RenderTexture
+    public RenderTexture renderTexture; // The RenderTexture to capture from
 
     private bool isTakingPhoto = false;
     private bool isCameraHolded = false;
@@ -65,17 +69,29 @@ public class CameraController : MonoBehaviour
 
         // Capture a screenshot
         yield return new WaitForEndOfFrame();
-        Texture2D screenshot = ScreenCapture.CaptureScreenshotAsTexture();
 
-        // Create a new picture model
         GameObject picture = Instantiate(picturePrefab, pictureSpawnPoint.position, pictureSpawnPoint.rotation);
-        picture.GetComponent<Renderer>().material.mainTexture = screenshot;
+
+        Texture2D dynamicTexture = new Texture2D(1920, 1080);
+
+        // Populate the Texture2D with color data (for example, a red color)
+        Color[] pixels = new Color[1920 * 1080];
+        Color fillColor = Color.red;
+        for (int i = 0; i < pixels.Length; i++)
+        {
+            pixels[i] = fillColor;
+        }
+        dynamicTexture.SetPixels(pixels);
+        dynamicTexture.Apply();
+
+
+        picture.GetComponentInChildren<Renderer>().material.mainTexture = dynamicTexture;
 
         // Trigger the sliding animation
         Animation animation = picture.GetComponent<Animation>();
-        animation.clip = slideAnimation;
         animation.Play();
 
+        yield return new WaitForSeconds(1.5f);
         // Trigger printing animation or effect if needed (via animation events)
 
         isTakingPhoto = false;
