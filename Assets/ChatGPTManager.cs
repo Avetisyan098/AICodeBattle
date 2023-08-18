@@ -14,6 +14,7 @@ public class ChatGPTManager : MonoBehaviour
     [TextArea(5, 20)]
     public string scene;
     public int maxResponseWordLimit = 15;
+    public RoomScript roomScript;
 
     bool canHear = false;
 
@@ -43,6 +44,11 @@ public class ChatGPTManager : MonoBehaviour
     private OpenAIApi openAI = new OpenAIApi("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", "org-9uhstzfEY5XTHI0xQxbtbomx");
     private List<ChatMessage> messages = new List<ChatMessage>();
 
+    public void Awake() 
+    {
+        roomScript = GameObject.Find("ScriptHolder").GetComponent<RoomScript>();
+    }
+
     public string GetInstructions()
     {
         string instructions = "You are a video game character and will answer to the message the player ask you. \n" +
@@ -56,7 +62,7 @@ public class ChatGPTManager : MonoBehaviour
             personality + "\n" +
 
             "Here is the information about the Scene around you : \n" +
-            scene + "\n" +
+            scene + roomScript.getCharacteristics() + "\n" +
 
             BuildActionInstructions() +
 
@@ -119,6 +125,11 @@ public class ChatGPTManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             voiceToText.Activate();
+        }
+
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            Debug.Log(roomScript.getCharacteristics());
         }
     }
 

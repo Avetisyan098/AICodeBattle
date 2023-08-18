@@ -11,23 +11,38 @@ public class RoomScript : MonoBehaviour
     public Transform hourHand;
     public Transform minuteHand;
     public Transform secondHand;
+    public static int thiefNumber;
+    public bool Museum = false;
+    public string[] characteristics = {"1", "2", "3"};
 
+    private void Awake() 
+    {
+        thiefNumber = UnityEngine.Random.Range(0,10);
+    }
 
     private void Update()
     {
-        DateTime currentTime = System.DateTime.Now;
+        if (!Museum)
+        {
+            DateTime currentTime = System.DateTime.Now;
 
-        int hours = currentTime.Hour % 12;
-        int minutes = currentTime.Minute;
-        int seconds = currentTime.Second;
+            int hours = currentTime.Hour % 12;
+            int minutes = currentTime.Minute;
+            int seconds = currentTime.Second;
 
-        float hourRotation = hours * 30f;    
-        float minuteRotation = minutes * 6f;  
-        float secondRotation = seconds * 6f;  
+            float hourRotation = hours * 30f;
+            float minuteRotation = minutes * 6f;
+            float secondRotation = seconds * 6f;
 
-        hourHand.localEulerAngles = new Vector3(0f, 0f, hourRotation);
-        minuteHand.localEulerAngles = new Vector3(0f, 0f, minuteRotation);
-        secondHand.localEulerAngles = new Vector3(0f, 0f, secondRotation);
+            hourHand.localEulerAngles = new Vector3(0f, 0f, hourRotation);
+            minuteHand.localEulerAngles = new Vector3(0f, 0f, minuteRotation);
+            secondHand.localEulerAngles = new Vector3(0f, 0f, secondRotation);
+        }
+        if (Input.GetKey(KeyCode.H))
+        {
+            Animate();
+        }
+        Debug.Log(thiefNumber);
     }
 
     public void Animate() 
@@ -45,6 +60,14 @@ public class RoomScript : MonoBehaviour
             RoomLight.intensity = 5f - i * 0.5f;
         }
         yield return new WaitForSeconds(1f);
+        DontDestroyOnLoad(gameObject);
+        Museum = true;
         SceneManager.LoadScene(1);
     }
+
+    public string getCharacteristics() 
+    {
+        return characteristics[thiefNumber];
+    }
 }
+
