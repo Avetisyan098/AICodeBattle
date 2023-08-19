@@ -41,7 +41,7 @@ public class ChatGPTManager : MonoBehaviour
     [System.Serializable]
     public class OnResponseEvent : UnityEvent<string> { }
 
-    private OpenAIApi openAI = new OpenAIApi("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", "org-9uhstzfEY5XTHI0xQxbtbomx");
+    private OpenAIApi openAI = new OpenAIApi("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", "org-9uhstzfEY5XTHI0xQxbtbomx");
     private List<ChatMessage> messages = new List<ChatMessage>();
 
     public void Awake() 

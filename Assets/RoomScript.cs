@@ -17,7 +17,7 @@ public class RoomScript : MonoBehaviour
 
     private void Awake() 
     {
-        thiefNumber = UnityEngine.Random.Range(0,10);
+        thiefNumber = UnityEngine.Random.Range(0,3);
     }
 
     private void Update()
